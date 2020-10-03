@@ -29,16 +29,10 @@ const Todo = (props) => {
   const handlePlayPause = () => setPaused(true);
 
   const tick = useCallback(() => {
-    let newCurrentTime;
-    if (currentTime === 0) {
-      newCurrentTime = 0;
-    } else {
-      newCurrentTime = isPaused ? currentTime : currentTime - 1;
-    }
-
     setDateString(formatDistanceToNow(todoDate, { includeSeconds: true }));
-    setCurrentTime(newCurrentTime);
-  }, [todoDate, currentTime, isPaused]);
+    if (currentTime === 0) setCurrentTime(0);
+    else if (!isPaused) setCurrentTime((prevState) => prevState - 1);
+  }, [todoDate, isPaused, currentTime]);
 
   useEffect(() => {
     timerId = setInterval(() => tick(), 1000);
@@ -63,12 +57,14 @@ const Todo = (props) => {
         <button
           className={clsx('icon icon-play', isEdit && 'hidden')}
           onClick={handlePlayClick}
+          disabled={!isPaused}
           aria-label="Play"
           type="button"
         />
         <button
           className={clsx('icon icon-pause', isEdit && 'hidden')}
           onClick={handlePlayPause}
+          disabled={isPaused}
           aria-label="Pause"
           type="button"
         />

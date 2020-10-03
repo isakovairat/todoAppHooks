@@ -20,9 +20,15 @@ const NewTodoForm = (props) => {
         setDescription(event.target.value);
         break;
       case 'minutes':
+        if (+event.target.value > 60) {
+          break;
+        }
         setMinutes(event.target.value);
         break;
       case 'seconds':
+        if (+event.target.value > 60) {
+          break;
+        }
         setSeconds(event.target.value);
         break;
       default:

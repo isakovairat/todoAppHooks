@@ -31,12 +31,12 @@ const TodosFilter = (props) => {
 };
 
 TodosFilter.defaultProps = {
-  filter: () => {},
+  filter: '',
   onFilterChange: () => {},
 };
 
 TodosFilter.propTypes = {
-  filter: PropTypes.func,
+  filter: PropTypes.string,
   onFilterChange: PropTypes.func,
 };
 

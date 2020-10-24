@@ -19,7 +19,7 @@ const App = () => {
     };
   }
 
-  const [todoData, setTodoData] = useState(() => [...Array(1)].map((_todo, index) => createTodo(`test ${index}`)));
+  const [todoData, setTodoData] = useState([createTodo('test 0')]);
   const [filter, setFilter] = useState('all');
 
   const addTodo = (description, seconds) =>
